@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Button, Input, Textarea, Card } from "@nextui-org/react";
+import { createClient } from "@supabase/supabase-js";
+
+const supabase = createClient(
+  process.env.NEXT_PUBLIC_SUPABASE_URL,
+  process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY
+);
 
 const RSVPandFeedbackSection = () => {
   const [rsvpStatus, setRsvpStatus] = useState(null);
@@ -16,11 +22,13 @@ const RSVPandFeedbackSection = () => {
 
   const fetchFeedbacks = async () => {
     try {
-      const response = await fetch("/api/feedback");
-      const data = await response.json();
-      if (data.success) {
-        setFeedbacks(data.data);
-      }
+      const { data: feedbacks, error } = await supabase
+        .from("feedbacks")
+        .select("*")
+        .order("timestamp", { ascending: false });
+
+      if (error) throw error;
+      setFeedbacks(feedbacks || []);
     } catch (error) {
       console.error("Failed to fetch feedbacks:", error);
     }
@@ -28,33 +36,27 @@ const RSVPandFeedbackSection = () => {
 
   const handleSubmit = async () => {
     if (!guestName || !message || !rsvpStatus) return;
-    console.log("🚀 ~ handleSubmit ~ guestName:", guestName);
-    console.log("🚀 ~ handleSubmit ~ message:", message);
-    console.log("🚀 ~ handleSubmit ~ rsvpStatus:", rsvpStatus);
 
     setIsSubmitting(true);
     try {
-      const response = await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+      const { data, error } = await supabase.from("feedbacks").insert([
+        {
           name: guestName,
           message,
           rsvpStatus,
           timestamp: new Date().toISOString(),
-        }),
-      });
+        },
+      ]);
 
-      const result = await response.json();
-      if (result.success) {
-        setSubmitSuccess(true);
-        fetchFeedbacks(); // Refresh feedbacks
+      if (error) throw error;
 
-        // Reset form
-        setGuestName("");
-        setMessage("");
-        setRsvpStatus(null);
-      }
+      setSubmitSuccess(true);
+      fetchFeedbacks(); // Refresh feedbacks
+
+      // Reset form
+      setGuestName("");
+      setMessage("");
+      setRsvpStatus(null);
     } catch (error) {
       console.error("Failed to submit:", error);
     } finally {
