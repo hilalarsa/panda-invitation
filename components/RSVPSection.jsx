@@ -28,28 +28,33 @@ const RSVPandFeedbackSection = () => {
 
   const handleSubmit = async () => {
     if (!guestName || !message || !rsvpStatus) return;
+    console.log("🚀 ~ handleSubmit ~ guestName:", guestName);
+    console.log("🚀 ~ handleSubmit ~ message:", message);
+    console.log("🚀 ~ handleSubmit ~ rsvpStatus:", rsvpStatus);
 
     setIsSubmitting(true);
     try {
-      // Submit RSVP
-      await fetch("/api/rsvp", {
+      const response = await fetch("/api/feedback", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: guestName, status: rsvpStatus, message }),
+        body: JSON.stringify({
+          name: guestName,
+          message,
+          rsvpStatus,
+          timestamp: new Date().toISOString(),
+        }),
       });
 
-      // Submit Feedback
-      await fetch("/api/feedback", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name: guestName, message }),
-      });
+      const result = await response.json();
+      if (result.success) {
+        setSubmitSuccess(true);
+        fetchFeedbacks(); // Refresh feedbacks
 
-      setSubmitSuccess(true);
-      setGuestName("");
-      setMessage("");
-      setRsvpStatus(null);
-      fetchFeedbacks(); // Refresh feedbacks
+        // Reset form
+        setGuestName("");
+        setMessage("");
+        setRsvpStatus(null);
+      }
     } catch (error) {
       console.error("Failed to submit:", error);
     } finally {
@@ -141,6 +146,11 @@ const RSVPandFeedbackSection = () => {
                   </small>
                 </div>
                 <p className="text-gray-600">{feedback.message}</p>
+                <p className="text-sm text-gray-500">
+                  {feedback.rsvpStatus === "attending"
+                    ? "✅ Attending"
+                    : "❌ Not Attending"}
+                </p>
               </Card>
             </motion.div>
           ))}

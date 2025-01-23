@@ -6,7 +6,7 @@
     "date": "February 8, 2025"
   },
   "musicSection": {
-    "songPath": "/music/wedding-song.mp3",
+    "songPath": "/assets/wedding-song.mp3",
     "backgroundImage": "/assets/gallery (7).jpg",
     "date": "February 8, 2025",
     "time": "10 AM - 2 PM",
@@ -58,19 +58,14 @@
     "backgroundImage": "/assets/bg (3).jpg"
   },
   "giftSection": {
+    "backgroundImage": "/assets/bg (2).jpg",
     "title": "Wedding Gifts",
     "subtitle": "Your presence is our present, but if you wish to give a gift, here are the details: ",
     "accounts": [
       {
-        "bank": "Chase Bank",
-        "number": "1234567890",
-        "name": "John Smith"
-      }
-    ],
-    "addresses": [
-      {
-        "title": "Home Address",
-        "address": "123 Wedding Street, NY 10001"
+        "bank": "Bank Jatim",
+        "number": "0032903177",
+        "name": "Widyandita Agustine"
       }
     ]
   },
@@ -79,6 +74,8 @@
     "subtitle": "Please let us know if you can join us on our special day"
   },
   "thankYouSection": {
-    "message": "Thank you for being part of our special day"
+    "backgroundImage": "/assets/bg (3).jpg",
+    "message": "for being part of our special day",
+    "closingMessage": "Dita & Galih"
   }
 }

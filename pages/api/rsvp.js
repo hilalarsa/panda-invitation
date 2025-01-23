@@ -12,7 +12,7 @@ export async function POST(request) {
     const rsvpData = await fs.readFile(rsvpPath, "utf8");
     const rsvpJson = JSON.parse(rsvpData);
 
-    const newRSVP: RSVP = {
+    const newRSVP = {
       id: Date.now().toString(),
       name,
       status,

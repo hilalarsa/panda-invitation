@@ -3,9 +3,9 @@ import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import useSound from "use-sound";
 import { useSearchParams } from "next/navigation";
-import RSVPSection from "./RSVPSection";
+import RSVPSection from "@/components/RSVPSection";
 
-import config from "@/app/data/config.json";
+import config from "@/data/config.json";
 
 const WeddingInvitation = () => {
   const searchParams = useSearchParams();
@@ -18,6 +18,26 @@ const WeddingInvitation = () => {
     minutes: 0,
     seconds: 0,
   });
+
+  // Prevent scrolling when invitation is not open
+  useEffect(() => {
+    const preventScroll = (e) => {
+      if (!isOpen) {
+        e.preventDefault();
+        window.scrollTo(0, 0);
+      }
+    };
+
+    document.body.style.overflow = isOpen ? "auto" : "hidden";
+    window.addEventListener("wheel", preventScroll, { passive: false });
+    window.addEventListener("touchmove", preventScroll, { passive: false });
+
+    return () => {
+      document.body.style.overflow = "auto";
+      window.removeEventListener("wheel", preventScroll);
+      window.removeEventListener("touchmove", preventScroll);
+    };
+  }, [isOpen]);
 
   useEffect(() => {
     const weddingDate = new Date(config.coverSection.date);
@@ -39,7 +59,9 @@ const WeddingInvitation = () => {
 
   const handleOpen = () => {
     setIsOpen(true);
-    play();
+    if (!isOpen) {
+      play();
+    }
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
@@ -308,114 +330,44 @@ const WeddingInvitation = () => {
 
       {/* RSVP Section */}
       <RSVPSection />
-      {/* <motion.section
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        className="min-h-screen bg-white py-16 px-6"
-      >
-        <div className="max-w-md mx-auto">
-          <h2 className="text-3xl font-serif text-center mb-4">
-            {config.rsvpSection.title}
-          </h2>
-          <p className="text-center text-gray-600 mb-8">
-            {config.rsvpSection.subtitle}
-          </p>
-
-          <div className="space-y-6">
-            <Input
-              label="Your Name"
-              value={guestName}
-              onChange={(e) => setGuestName(e.target.value)}
-              className="mb-4"
-            />
-
-            <div className="flex gap-4 justify-center">
-              <Button
-                color={rsvpStatus === "attending" ? "primary" : "default"}
-                onClick={() => setRsvpStatus("attending")}
-              >
-                Yes, I'll be there
-              </Button>
-              <Button
-                color={rsvpStatus === "not-attending" ? "primary" : "default"}
-                onClick={() => setRsvpStatus("not-attending")}
-              >
-                Sorry, I can't make it
-              </Button>
-            </div>
-
-            <Textarea
-              label="Your Message"
-              placeholder="Send your wishes to the couple..."
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="mt-6"
-            />
-
-            <Button
-              color="primary"
-              className="w-full"
-              onClick={() => {
-                // Handle RSVP submission
-                console.log({ guestName, rsvpStatus, message });
-                // You would typically send this to your backend
-              }}
-            >
-              Send RSVP
-            </Button>
-          </div>
-        </div>
-      </motion.section> */}
 
       {/* Gift Section */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="min-h-screen bg-gray-50 py-16 px-6"
+        className=""
+        style={{
+          backgroundImage: `url('${config.giftSection.backgroundImage}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
-        <div className="max-w-md mx-auto">
-          <h2 className="text-3xl font-serif text-center mb-4">
-            {config.giftSection.title}
-          </h2>
-          <p className="text-center text-gray-600 mb-8">
-            {config.giftSection.subtitle}
-          </p>
+        <div className="bg-black/50 ">
+          <div className="max-w-md mx-auto py-16 px-6 align-center">
+            <h2 className="text-3xl font-serif text-center mb-4 text-gray-100">
+              {config.giftSection.title}
+            </h2>
+            <p className="text-center mb-8 text-gray-100">
+              {config.giftSection.subtitle}
+            </p>
 
-          {/* Bank Accounts */}
-          <div className="mb-8">
-            <h3 className="text-xl font-serif mb-4">Bank Details</h3>
-            {config.giftSection.accounts.map((account, index) => (
-              <motion.div
-                key={index}
-                initial={{ x: -20, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                className="bg-white p-4 rounded-lg shadow-md mb-4"
-              >
-                <p className="font-semibold">{account.bank}</p>
-                <p className="font-mono">{account.number}</p>
-                <p className="text-gray-600">a/n {account.name}</p>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Physical Addresses */}
-          <div>
-            <h3 className="text-xl font-serif mb-4">Gift Addresses</h3>
-            {config.giftSection.addresses.map((address, index) => (
-              <motion.div
-                key={index}
-                initial={{ x: 20, opacity: 0 }}
-                whileInView={{ x: 0, opacity: 1 }}
-                viewport={{ once: true }}
-                className="bg-white p-4 rounded-lg shadow-md mb-4"
-              >
-                <p className="font-semibold">{address.title}</p>
-                <p className="text-gray-600">{address.address}</p>
-              </motion.div>
-            ))}
+            {/* Bank Accounts */}
+            <div className="mb-8">
+              {config.giftSection.accounts.map((account, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ x: -20, opacity: 0 }}
+                  whileInView={{ x: 0, opacity: 1 }}
+                  viewport={{ once: true }}
+                  className="bg-white p-4 rounded-lg shadow-md mb-4"
+                >
+                  <p className="font-semibold">{account.bank}</p>
+                  <p className="font-mono">{account.number}</p>
+                  <p className="text-gray-600">a/n {account.name}</p>
+                </motion.div>
+              ))}
+            </div>
           </div>
         </div>
       </motion.section>
@@ -425,18 +377,23 @@ const WeddingInvitation = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="min-h-screen bg-white py-16 px-6 flex items-center justify-center"
+        className="min-h-screen py-16 px-6 flex items-center justify-center"
+        style={{
+          backgroundImage: `url('${config.thankYouSection.backgroundImage}')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+        }}
       >
         <motion.div
           initial={{ scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center"
+          className="text-center p-16 bg-black/50"
         >
-          <h2 className="text-3xl font-serif mb-6">Thank You</h2>
-          <p className="text-gray-600">{config.thankYouSection.message}</p>
-          <p className="mt-4 font-serif text-2xl">
-            {config.coverSection.title}
+          <h2 className="text-3xl font-serif mb-6 text-white">Thank You</h2>
+          <p className="text-gray-100">{config.thankYouSection.message}</p>
+          <p className="mt-4 font-serif text-2xl text-gray-100">
+            {config.thankYouSection.closingMessage}
           </p>
         </motion.div>
       </motion.section>
