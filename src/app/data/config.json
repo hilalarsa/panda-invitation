@@ -1,0 +1,84 @@
+{
+  "coverSection": {
+    "backgroundImage": "/assets/gallery (1).jpg",
+    "title": "Wedding of Dita & Galih",
+    "subtitle": "We're getting married!",
+    "date": "February 8, 2025"
+  },
+  "musicSection": {
+    "songPath": "/music/wedding-song.mp3",
+    "backgroundImage": "/assets/gallery (7).jpg",
+    "date": "February 8, 2025",
+    "time": "10 AM - 2 PM",
+    "venue": "Warung Ermin's - Jubung, Jember"
+  },
+  "coupleSection": {
+    "backgroundImage": "/assets/bg (1).jpg",
+    "groom": {
+      "name": "M. Galih Firdaus Firmansyah",
+      "photo": "/assets/gallery (3).jpg",
+      "degree": "",
+      "parents": {
+        "childStatus": "Putra pertama dari",
+        "father": "Bpk Putut Edi Sujiko",
+        "mother": "Ibu Mustatiach"
+      }
+    },
+    "bride": {
+      "name": "Widyandita Agustine",
+      "photo": "/assets/gallery (6).jpg",
+      "degree": "",
+      "parents": {
+        "childStatus": "Putri tunggal dari",
+        "father": "Bpk Agus Minanto",
+        "mother": "Ibu Sri Widartik"
+      }
+    }
+  },
+  "venueSection": {
+    "reception": {
+      "title": "Warung Ermin's",
+      "date": "February 8, 2025",
+      "time": "10 AM - 2 PM",
+      "venue": "Warung Ermin's",
+      "address": "Jalan Brawijaya, Jubung - Jember",
+      "googleMapsLink": "https://maps.app.goo.gl/NCwD6qDoAmnyEZuv9"
+    }
+  },
+  "gallerySection": {
+    "photos": [
+      { "url": "/assets/gallery (1).jpg", "width": "full" },
+      { "url": "/assets/gallery (2).jpg", "width": "half" },
+      { "url": "/assets/gallery (4).jpg", "width": "half" },
+      { "url": "/assets/gallery (5).jpg", "width": "half" },
+      { "url": "/assets/gallery (7).jpg", "width": "half" }
+    ]
+  },
+  "countdownSection": {
+    "backgroundImage": "/assets/bg (3).jpg"
+  },
+  "giftSection": {
+    "title": "Wedding Gifts",
+    "subtitle": "Your presence is our present, but if you wish to give a gift, here are the details: ",
+    "accounts": [
+      {
+        "bank": "Chase Bank",
+        "number": "1234567890",
+        "name": "John Smith"
+      }
+    ],
+    "addresses": [
+      {
+        "title": "Home Address",
+        "address": "123 Wedding Street, NY 10001"
+      }
+    ]
+  },
+  "rsvpSection": {
+    "title": "RSVP",
+    "subtitle": "Please let us know if you can join us on our special day"
+  },
+  "thankYouSection": {
+    "message": "Thank you for being part of our special day"
+  }
+}
