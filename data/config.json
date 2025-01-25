@@ -1,7 +1,8 @@
 {
   "coverSection": {
     "backgroundImage": "/assets/gallery (1).jpg",
-    "title": "Wedding of Dita & Galih",
+    "title": "Wedding of ",
+    "name": "Dita & Galih",
     "subtitle": "We're getting married!",
     "date": "Sabtu, 8 Februari 2025"
   },
@@ -12,9 +13,7 @@
   "musicSection": {
     "songPath": "/assets/wedding-song.mp3",
     "backgroundImage": "/assets/gallery (7).jpg",
-    "date": "Sabtu, 8 Februari 2025",
-    "time": "10 AM - 2 PM",
-    "venue": "Warung Ermin's - Jubung, Jember"
+    "fillerImage": "/assets/flower (3).png"
   },
   "coupleSection": {
     "backgroundImage": "/assets/bg (1).jpg",

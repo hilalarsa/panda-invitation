@@ -82,25 +82,24 @@ const WeddingInvitation = () => {
           <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            className="text-4xl font-serif mb-4"
+            className="text-4xl font-serif mb-4 self-start"
           >
             {config.coverSection.title}
           </motion.h1>
-          <motion.p
+          <motion.h1
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-xl mb-8"
+            className="text-6xl font-serif mb-20 ml-5 self-start"
           >
-            {config.coverSection.subtitle}
-          </motion.p>
+            {config.coverSection.name}
+          </motion.h1>
           <motion.div
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.4 }}
             className="text-center"
           >
-            <p className="text-lg mb-4">Dengan hormat:</p>
+            <p className="text-lg mt-40 mb-4">Dengan hormat:</p>
             <p className="text-lg mb-4">Bapak / Ibu / Saudara / i:</p>
             <p className="text-2xl font-serif">{invitedGuest}</p>
           </motion.div>
@@ -133,6 +132,17 @@ const WeddingInvitation = () => {
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
+            className="text-center mb-6"
+          >
+            <img
+              src={config.musicSection.fillerImage}
+              className="w-48 h-48 brightness-90"
+            />
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
             className="text-center mb-24"
           >
             <div className="text-center p-8 bg-white/30 rounded-xl shadow-lg max-w-xl">
@@ -143,18 +153,6 @@ const WeddingInvitation = () => {
                 </span>
               </p>
             </div>
-          </motion.div>
-          <motion.div
-            initial={{ scale: 0 }}
-            whileInView={{ scale: 1 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <h2 className="text-3xl font-serif mb-4">
-              {config.musicSection.date}
-            </h2>
-            <p className="text-xl">{config.musicSection.time}</p>
-            <p className="text-xl">{config.musicSection.venue}</p>
           </motion.div>
         </div>
       </motion.section>
@@ -246,27 +244,27 @@ const WeddingInvitation = () => {
           backgroundPosition: "center",
         }}
       >
-        <div className=" flex flex-col items-center justify-center">
-          <motion.div className="mb-16 text-center">
+        <div className=" flex flex-col items-center justify-center bg-black bg-opacity-50 py-6">
+          <motion.div className="mb-16 text-center ">
             <h2 className="text-3xl font-serif mb-8 text-gray-100">
               Counting down to our special day
             </h2>
             <div className="grid grid-cols-4 gap-4">
               <div className="bg-white p-4 rounded-lg shadow">
                 <p className="text-3xl font-bold">{timeLeft.days}</p>
-                <p className="text-gray-600">Days</p>
+                <p className="text-gray-600">Hari</p>
               </div>
               <div className="bg-white p-4 rounded-lg shadow">
                 <p className="text-3xl font-bold">{timeLeft.hours}</p>
-                <p className="text-gray-600">Hours</p>
+                <p className="text-gray-600">Jam</p>
               </div>
               <div className="bg-white p-4 rounded-lg shadow">
                 <p className="text-3xl font-bold">{timeLeft.minutes}</p>
-                <p className="text-gray-600">Minutes</p>
+                <p className="text-gray-600">Menit</p>
               </div>
               <div className="bg-white p-4 rounded-lg shadow">
                 <p className="text-3xl font-bold">{timeLeft.seconds}</p>
-                <p className="text-gray-600">Seconds</p>
+                <p className="text-gray-600">Detik</p>
               </div>
             </div>
           </motion.div>
@@ -360,15 +358,15 @@ const WeddingInvitation = () => {
       >
         <div className="bg-black/50 min-h-screen">
           <div className="max-w-md mx-auto py-16 px-6 h-screen flex flex-col justify-center">
-            <h2 className="text-3xl font-serif text-center mb-4 text-gray-100">
+            <h2 className="text-5xl font-serif text-center mb-12 text-gray-100">
               {config.giftSection.title}
             </h2>
-            <p className="text-center mb-8 text-gray-100 text-lg">
+            <p className="text-center mb-8 text-gray-100 text-md">
               {config.giftSection.subtitle}
             </p>
 
             {/* Bank Accounts */}
-            <div className="mb-8">
+            <div className="mb-8 mt-8">
               {config.giftSection.accounts.map((account, index) => (
                 <motion.div
                   key={index}
@@ -378,12 +376,22 @@ const WeddingInvitation = () => {
                   className="bg-white p-4 rounded-lg shadow-md mb-4"
                 >
                   <p className="font-semibold">{account.bank}</p>
-                  <p className="font-mono">{account.number}</p>
+                  <div className="flex items-center">
+                    <p className="font-mono text-lg mr-2">{account.number}</p>
+                    <button
+                      onClick={() =>
+                        navigator.clipboard.writeText(account.number)
+                      }
+                      className="text-gray-500 hover:text-gray-700 cursor-pointer bg-gray-300 rounded-md px-2 py-1"
+                    >
+                      Copy
+                    </button>
+                  </div>{" "}
                   <p className="text-gray-600">a/n {account.name}</p>
                 </motion.div>
               ))}
             </div>
-            <p className="text-center mb-8 text-gray-100 text-lg">
+            <p className="text-center mb-8 text-gray-100 text-md">
               {config.giftSection.giftThankYou}
             </p>
           </div>
@@ -409,7 +417,9 @@ const WeddingInvitation = () => {
           className="text-center p-10 bg-black/50"
         >
           <h2 className="text-3xl font-serif mb-6 text-white">Thank You</h2>
-          <p className="text-gray-100 text-lg">{config.thankYouSection.message}</p>
+          <p className="text-gray-100 text-lg">
+            {config.thankYouSection.message}
+          </p>
           <p className="mt-4 font-serif text-4xl text-gray-100">
             {config.thankYouSection.closingMessage}
           </p>
