@@ -8,10 +8,10 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_SERVICE_KEY
 );
 
-const RSVPandFeedbackSection = () => {
+const RSVPandFeedbackSection = ({ invitedGuest }) => {
   const [rsvpStatus, setRsvpStatus] = useState(null);
   const [message, setMessage] = useState("");
-  const [guestName, setGuestName] = useState("");
+  const [guestName, setGuestName] = useState(invitedGuest);
   const [feedbacks, setFeedbacks] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -78,9 +78,10 @@ const RSVPandFeedbackSection = () => {
         >
           <Card className="p-6">
             <Input
-              label="Your Name"
+              label="Nama"
               value={guestName}
-              onChange={(e) => setGuestName(e.target.value)}
+              disabled
+              // onChange={(e) => setGuestName(guestName || e.target.value)}
               className="mb-4"
             />
 
@@ -89,19 +90,19 @@ const RSVPandFeedbackSection = () => {
                 color={rsvpStatus === "attending" ? "primary" : "default"}
                 onClick={() => setRsvpStatus("attending")}
               >
-                Yes, I'll be there
+                Ya, Saya bisa hadir
               </Button>
               <Button
                 color={rsvpStatus === "not-attending" ? "primary" : "default"}
                 onClick={() => setRsvpStatus("not-attending")}
               >
-                Sorry, I can't make it
+                Maaf, belum bisa hadir
               </Button>
             </div>
 
             <Textarea
-              label="Your Message"
-              placeholder="Send your wishes to the couple..."
+              label="Pesan"
+              placeholder="Kirim pesan anda untuk pasangan mempelai"
               value={message}
               onChange={(e) => setMessage(e.target.value)}
               className="mb-4"
@@ -113,7 +114,7 @@ const RSVPandFeedbackSection = () => {
               onClick={handleSubmit}
               disabled={isSubmitting || !guestName || !message || !rsvpStatus}
             >
-              {isSubmitting ? "Sending..." : "Send RSVP & Wishes"}
+              {isSubmitting ? "Sending..." : "Kirim RSVP & Wishes"}
             </Button>
 
             {submitSuccess && (

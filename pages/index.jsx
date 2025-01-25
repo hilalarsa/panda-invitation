@@ -133,6 +133,21 @@ const WeddingInvitation = () => {
             initial={{ scale: 0 }}
             whileInView={{ scale: 1 }}
             viewport={{ once: true }}
+            className="text-center mb-24"
+          >
+            <div className="text-center p-8 bg-white/30 rounded-xl shadow-lg max-w-xl">
+              <p className="text-lg italic">
+                {config.doaSection.doaWording}
+                <span className="block mt-2 text-sm">
+                  {config.doaSection.doaSurah}
+                </span>
+              </p>
+            </div>
+          </motion.div>
+          <motion.div
+            initial={{ scale: 0 }}
+            whileInView={{ scale: 1 }}
+            viewport={{ once: true }}
             className="text-center"
           >
             <h2 className="text-3xl font-serif mb-4">
@@ -329,26 +344,26 @@ const WeddingInvitation = () => {
       </motion.section>
 
       {/* RSVP Section */}
-      <RSVPSection />
+      <RSVPSection invitedGuest={invitedGuest} />
 
       {/* Gift Section */}
       <motion.section
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className=""
+        className="min-h-screen"
         style={{
           backgroundImage: `url('${config.giftSection.backgroundImage}')`,
           backgroundSize: "cover",
           backgroundPosition: "center",
         }}
       >
-        <div className="bg-black/50 ">
-          <div className="max-w-md mx-auto py-16 px-6 align-center">
+        <div className="bg-black/50 min-h-screen">
+          <div className="max-w-md mx-auto py-16 px-6 h-screen flex flex-col justify-center">
             <h2 className="text-3xl font-serif text-center mb-4 text-gray-100">
               {config.giftSection.title}
             </h2>
-            <p className="text-center mb-8 text-gray-100">
+            <p className="text-center mb-8 text-gray-100 text-lg">
               {config.giftSection.subtitle}
             </p>
 
@@ -368,6 +383,9 @@ const WeddingInvitation = () => {
                 </motion.div>
               ))}
             </div>
+            <p className="text-center mb-8 text-gray-100 text-lg">
+              {config.giftSection.giftThankYou}
+            </p>
           </div>
         </div>
       </motion.section>
@@ -377,7 +395,7 @@ const WeddingInvitation = () => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
-        className="min-h-screen py-16 px-6 flex items-center justify-center"
+        className="min-h-screen py-16 px-4 flex items-center justify-center"
         style={{
           backgroundImage: `url('${config.thankYouSection.backgroundImage}')`,
           backgroundSize: "cover",
@@ -388,11 +406,11 @@ const WeddingInvitation = () => {
           initial={{ scale: 0.8, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
           viewport={{ once: true }}
-          className="text-center p-16 bg-black/50"
+          className="text-center p-10 bg-black/50"
         >
           <h2 className="text-3xl font-serif mb-6 text-white">Thank You</h2>
-          <p className="text-gray-100">{config.thankYouSection.message}</p>
-          <p className="mt-4 font-serif text-2xl text-gray-100">
+          <p className="text-gray-100 text-lg">{config.thankYouSection.message}</p>
+          <p className="mt-4 font-serif text-4xl text-gray-100">
             {config.thankYouSection.closingMessage}
           </p>
         </motion.div>

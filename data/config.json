@@ -3,12 +3,16 @@
     "backgroundImage": "/assets/gallery (1).jpg",
     "title": "Wedding of Dita & Galih",
     "subtitle": "We're getting married!",
-    "date": "February 8, 2025"
+    "date": "Sabtu, 8 Februari 2025"
+  },
+  "doaSection": {
+    "doaWording": "“Dan diantara tanda-tanda kekuasaan-Nya ialah diciptakan-Nya untukmu pasangan hidup dari jenismu sendiri supaya kamu mendapat ketenangan hati dan dijadikan-Nya kasih sayang diantara kamu. Sesungguhnya yang demikian menjadi tanda-tanda kebesaran-Nya bagi orang-orang yang berpikir.”",
+    "doaSurah": "(QS. Ar-Rum: 21)"
   },
   "musicSection": {
     "songPath": "/assets/wedding-song.mp3",
     "backgroundImage": "/assets/gallery (7).jpg",
-    "date": "February 8, 2025",
+    "date": "Sabtu, 8 Februari 2025",
     "time": "10 AM - 2 PM",
     "venue": "Warung Ermin's - Jubung, Jember"
   },
@@ -38,7 +42,7 @@
   "venueSection": {
     "reception": {
       "title": "Warung Ermin's",
-      "date": "February 8, 2025",
+      "date": "Sabtu, 8 Februari 2025",
       "time": "10 AM - 2 PM",
       "venue": "Warung Ermin's",
       "address": "Jalan Brawijaya, Jubung - Jember",
@@ -60,14 +64,15 @@
   "giftSection": {
     "backgroundImage": "/assets/bg (2).jpg",
     "title": "Wedding Gifts",
-    "subtitle": "Your presence is our present, but if you wish to give a gift, here are the details: ",
+    "subtitle": "Your presence at our celebration is the greatest gift we could ever ask for, and we are so grateful to have you share in this special day with us. However, if you wish to bless us with something more, here are the details. ",
     "accounts": [
       {
         "bank": "Bank Jatim",
         "number": "0032903177",
         "name": "Widyandita Agustine"
       }
-    ]
+    ],
+    "giftThankYou": "Your thoughtfulness means the world to us, and we deeply appreciate your kindness as we begin this new chapter together."
   },
   "rsvpSection": {
     "title": "RSVP",
@@ -75,7 +80,7 @@
   },
   "thankYouSection": {
     "backgroundImage": "/assets/bg (3).jpg",
-    "message": "for being part of our special day",
+    "message": "Our hearts are full of gratitude as we celebrate this beautiful moment together. Your love, encouragement, and presence mean the world to us, whether near or far. Life’s sweetest moments are best shared, and knowing we have your support makes our journey into marriage even more special. Thank you for being part of the beginning of our forever.",
     "closingMessage": "Dita & Galih"
   }
 }
