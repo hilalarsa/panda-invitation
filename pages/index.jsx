@@ -19,6 +19,11 @@ const WeddingInvitation = () => {
     seconds: 0,
   });
 
+  useEffect(() => {
+    stop();
+    window.scrollTo(0, 0);
+  }, []);
+
   // Prevent scrolling when invitation is not open
   useEffect(() => {
     const preventDefault = (e) => {
