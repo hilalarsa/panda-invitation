@@ -21,21 +21,29 @@ const WeddingInvitation = () => {
 
   // Prevent scrolling when invitation is not open
   useEffect(() => {
-    const preventScroll = (e) => {
+    const preventDefault = (e) => {
       if (!isOpen) {
         e.preventDefault();
-        window.scrollTo(0, 0);
       }
     };
-
-    document.body.style.overflow = isOpen ? "auto" : "hidden";
-    window.addEventListener("wheel", preventScroll, { passive: false });
-    window.addEventListener("touchmove", preventScroll, { passive: false });
-
+  
+    if (!isOpen) {
+      document.body.style.overflow = "hidden"; // Disable scrolling
+      document.body.style.touchAction = "none"; // Disable touch gestures
+      window.addEventListener("wheel", preventDefault, { passive: false });
+      window.addEventListener("touchmove", preventDefault, { passive: false });
+    } else {
+      document.body.style.overflow = "auto"; // Enable scrolling
+      document.body.style.touchAction = "auto"; // Enable touch gestures
+      window.removeEventListener("wheel", preventDefault);
+      window.removeEventListener("touchmove", preventDefault);
+    }
+  
     return () => {
-      document.body.style.overflow = "auto";
-      window.removeEventListener("wheel", preventScroll);
-      window.removeEventListener("touchmove", preventScroll);
+      document.body.style.overflow = "auto"; // Reset scroll
+      document.body.style.touchAction = "auto"; // Reset touch gestures
+      window.removeEventListener("wheel", preventDefault);
+      window.removeEventListener("touchmove", preventDefault);
     };
   }, [isOpen]);
 
@@ -170,7 +178,7 @@ const WeddingInvitation = () => {
         }}
       >
         {/* Groom */}
-        <div className="bg-black bg-opacity-50 flex flex-col items-center justify-center text-white p-6">
+        <div className="min-h-screen bg-black/30 flex flex-col items-center justify-center text-white p-6">
           <motion.div
             initial={{ x: -50, opacity: 0 }}
             whileInView={{ x: 0, opacity: 1 }}

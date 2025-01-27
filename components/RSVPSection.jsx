@@ -130,7 +130,7 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
-          className="space-y-4"
+          className="space-y-4 max-h-[400px] overflow-auto"
         >
           <h3 className="text-2xl font-serif text-center mb-6">Messages</h3>
           {feedbacks.map((feedback, index) => (
@@ -140,6 +140,7 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ delay: index * 0.1 }}
               viewport={{ once: true }}
+              className=""
             >
               <Card className="p-4">
                 <div className="flex justify-between items-start mb-2">
