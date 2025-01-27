@@ -26,7 +26,7 @@ const WeddingInvitation = () => {
         e.preventDefault();
       }
     };
-  
+
     if (!isOpen) {
       document.body.style.overflow = "hidden"; // Disable scrolling
       document.body.style.touchAction = "none"; // Disable touch gestures
@@ -38,7 +38,7 @@ const WeddingInvitation = () => {
       window.removeEventListener("wheel", preventDefault);
       window.removeEventListener("touchmove", preventDefault);
     }
-  
+
     return () => {
       document.body.style.overflow = "auto"; // Reset scroll
       document.body.style.touchAction = "auto"; // Reset touch gestures
@@ -69,6 +69,8 @@ const WeddingInvitation = () => {
     setIsOpen(true);
     if (!isOpen) {
       play();
+    } else {
+      stop();
     }
     window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
@@ -107,7 +109,7 @@ const WeddingInvitation = () => {
             transition={{ delay: 0.4 }}
             className="text-center"
           >
-            <p className="text-lg mt-40 mb-4">Dengan hormat:</p>
+            <p className="text-lg mt-28 mb-4">Dengan hormat:</p>
             <p className="text-lg mb-4">Bapak / Ibu / Saudara / i:</p>
             <p className="text-2xl font-serif">{invitedGuest}</p>
           </motion.div>
@@ -116,7 +118,7 @@ const WeddingInvitation = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
             onClick={handleOpen}
-            className="mt-8 px-8 py-3 border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors"
+            className="mt-4 px-8 py-3 border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
             Open Invitation
           </motion.button>
