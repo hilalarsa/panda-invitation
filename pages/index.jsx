@@ -10,7 +10,11 @@ import config from "@/data/config.json";
 const WeddingInvitation = () => {
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(false);
-  const [play, { stop }] = useSound(config.musicSection.songPath);
+  const [isReady, setIsReady] = useState(false);
+  const [play, { stop }] = useSound(config.musicSection.songPath, {
+    interrupt: true,
+    onload: () => setIsReady(true),
+  });
   const invitedGuest = searchParams.get("for") || "Our Valued Guest";
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
@@ -71,13 +75,11 @@ const WeddingInvitation = () => {
   }, [config.coverSection.date]);
 
   const handleOpen = () => {
-    setIsOpen(true);
-    if (!isOpen) {
+    if (isReady) {
+      setIsOpen(true);
       play();
-    } else {
-      stop();
+      window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
     }
-    window.scrollTo({ top: window.innerHeight, behavior: "smooth" });
   };
 
   return (
@@ -123,9 +125,14 @@ const WeddingInvitation = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.6 }}
             onClick={handleOpen}
+            disabled={!isReady}
             className="mt-4 px-8 py-3 border-2 border-white rounded-full hover:bg-white hover:text-black transition-colors"
           >
-            Open Invitation
+            {isReady ? (
+              "Open Invitation"
+            ) : (
+              <span className="flex items-center gap-2">Loading</span>
+            )}
           </motion.button>
         </div>
       </motion.section>
