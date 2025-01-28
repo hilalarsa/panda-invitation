@@ -11,7 +11,8 @@ const supabase = createClient(
 const RSVPandFeedbackSection = ({ invitedGuest }) => {
   const [rsvpStatus, setRsvpStatus] = useState(null);
   const [message, setMessage] = useState("");
-  const [guestName, setGuestName] = useState(invitedGuest);
+  // const [invitedGuest, setinvitedGuest] = useState(invitedGuest);
+  console.log("🚀 ~ RSVPandFeedbackSection ~ invitedGuest:", invitedGuest)
   const [feedbacks, setFeedbacks] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
@@ -35,13 +36,13 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
   };
 
   const handleSubmit = async () => {
-    if (!guestName || !message || !rsvpStatus) return;
+    if (!invitedGuest || !message || !rsvpStatus) return;
 
     setIsSubmitting(true);
     try {
       const { data, error } = await supabase.from("feedbacks").insert([
         {
-          name: guestName,
+          name: invitedGuest,
           message,
           rsvpStatus,
           timestamp: new Date().toISOString(),
@@ -54,7 +55,7 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
       fetchFeedbacks(); // Refresh feedbacks
 
       // Reset form
-      // setGuestName("");
+      // setinvitedGuest("");
       setMessage("");
       setRsvpStatus(null);
     } catch (error) {
@@ -79,9 +80,9 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
           <Card className="p-6">
             <Input
               label="Nama"
-              value={guestName}
+              value={invitedGuest}
               disabled
-              // onChange={(e) => setGuestName(guestName || e.target.value)}
+              // onChange={(e) => setinvitedGuest(invitedGuest || e.target.value)}
               className="mb-4"
             />
 
@@ -112,7 +113,7 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
               color="primary"
               className="w-full"
               onClick={handleSubmit}
-              disabled={isSubmitting || !guestName || !message || !rsvpStatus}
+              disabled={isSubmitting || !invitedGuest || !message || !rsvpStatus}
             >
               {isSubmitting ? "Sending..." : "Kirim RSVP & Wishes"}
             </Button>
