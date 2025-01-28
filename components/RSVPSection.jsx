@@ -12,7 +12,6 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
   const [rsvpStatus, setRsvpStatus] = useState(null);
   const [message, setMessage] = useState("");
   // const [invitedGuest, setinvitedGuest] = useState(invitedGuest);
-  console.log("🚀 ~ RSVPandFeedbackSection ~ invitedGuest:", invitedGuest)
   const [feedbacks, setFeedbacks] = useState([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitSuccess, setSubmitSuccess] = useState(false);
