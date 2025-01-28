@@ -54,7 +54,7 @@ const RSVPandFeedbackSection = ({ invitedGuest }) => {
       fetchFeedbacks(); // Refresh feedbacks
 
       // Reset form
-      setGuestName("");
+      // setGuestName("");
       setMessage("");
       setRsvpStatus(null);
     } catch (error) {
