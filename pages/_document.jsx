@@ -28,8 +28,8 @@ export default function Document() {
         />
         <meta property="og:type" content="website" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="720" />
-        <meta property="og:image:height" content="360" />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
         <meta property="og:updated_time" content={new Date().getTime()} />
 
         <meta name="twitter:card" content="summary_large_image" />
